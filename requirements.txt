@@ -1,9 +1,11 @@
 #app_light.py
 flask==2.3.3
+flask-cors==4.0.0
 
 #app.py
 # numpy<2
 # flask==2.3.3
+# flask-cors==4.0.0
 # torch==2.2.2
 # opencv-python==4.10.0.82
 # Pillow==10.2.0

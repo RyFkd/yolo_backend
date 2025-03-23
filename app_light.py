@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 import os
 import uuid
 import random
 
 app = Flask(__name__)
+CORS(app)  # これでCORS対応完了！
 UPLOAD_FOLDER = "static/results"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
