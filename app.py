@@ -4,18 +4,20 @@ from PIL import Image
 import os
 import uuid
 import urllib.request
+import time
 
 MODEL_PATH = "yolov5s.pt"
+DL_URL = "https://github.com/ultralytics/yolov5/releases/download/v6.0/yolov5s.pt"
 
-# 自動ダウンロード（Renderなどで初回自動取得）
-if not os.path.exists(MODEL_PATH):
-    print("📥 yolov5s.pt not found. Downloading from official source...")
-    os.makedirs(os.path.dirname(MODEL_PATH) or ".", exist_ok=True)
-    urllib.request.urlretrieve(
-        "https://github.com/ultralytics/yolov5/releases/download/v6.0/yolov5s.pt",
-        MODEL_PATH
-    )
-    print("✅ Download complete!")
+for i in range(3):  # 最大3回リトライ
+    try:
+        if not os.path.exists(MODEL_PATH):
+            print(f"📥 Downloading YOLOv5 model... Attempt {i+1}")
+            urllib.request.urlretrieve(DL_URL, MODEL_PATH)
+        break
+    except Exception as e:
+        print(f"❌ Download failed: {e}")
+        time.sleep(5)  # 5秒待って再試行
 
 app = Flask(__name__)
 model = torch.hub.load('ultralytics/yolov5', 'custom', path=MODEL_PATH, force_reload=True)
