@@ -7,7 +7,8 @@ import urllib.request
 import time
 
 MODEL_PATH = "yolov5s.pt"
-DL_URL = "https://github.com/ultralytics/yolov5/releases/download/v6.0/yolov5s.pt"
+# DL_URL = "https://github.com/ultralytics/yolov5/releases/download/v6.0/yolov5s.pt"　#github apiの制限でダウンロードできない
+DL_URL = "https://drive.google.com/uc?export=download&id=1VPLId2Ui48Q2u0CYD1zkHk59D17H404B"
 
 for i in range(3):  # 最大3回リトライ
     try:
